@@ -3,52 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Page</title>
+    <title>Happy Valentine's Day!</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff7e7e, #ffb3b3);
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            overflow: hidden;
             text-align: center;
             font-family: Arial, sans-serif;
-            overflow: hidden;
         }
         .heart {
             position: absolute;
             width: 50px;
             height: 50px;
             background-color: red;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            transform: rotate(45deg);
             animation: float 5s infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
         }
         @keyframes float {
             0% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0); }
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 20px;
+        #video {
+            margin-top: 20px;
+        }
+        #buttons {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <h1>Happy Valentine's Day!</h1>
-    <img src="https://example.com/valentines_image.jpg" alt="Happy Valentine's Day" width="300" />
-    <div>
-        <button>YES</button>
-        <button>NO</button>
+    <div id="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/AjGkbFqi67c" frameborder="0" allowfullscreen></iframe>
     </div>
-    <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/example_video_id" frameborder="0" allowfullscreen></iframe>
+    <div id="buttons">
+        <button style="padding: 10px 20px; font-size: 20px;">YES</button>
+        <button style="padding: 10px 20px; font-size: 20px;">NO</button>
     </div>
-
     <script>
-        // Create floating hearts
+        // Floating hearts generation
         for (let i = 0; i < 20; i++) {
-            let heart = document.createElement('div');
-            heart.className = 'heart';
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
             document.body.appendChild(heart);
         }
     </script>
