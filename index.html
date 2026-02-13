@@ -1,67 +1,228 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Valentine's Gift</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Damaris ❤️</title>
     <style>
-        body {
-            overflow: hidden;
+        * {
             margin: 0;
-            background-color: pink;
+            padding: 0;
+            box-sizing: border-box;
         }
-        #heart {
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            position: absolute;
-            transform: rotate(-45deg);
-            animation: drift 5s infinite;
+        
+        html, body {
+            width: 100%;
+            height: 100%;
         }
-        #heart:before,
-        #heart:after {
-            content: "";
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            border-radius: 50%;
-            position: absolute;
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        #heart:before {
-            top: -25px;
-            left: 0;
+        
+        .container {
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
         }
-        #heart:after {
-            left: 25px;
-            top: 0;
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
-        @keyframes drift {
-            0% {
-                transform: translate(0, 0) rotate(-45deg);
+        
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            z-index: 15;
+        }
+        
+        #yesBtn {
+            background: white;
+            color: #ff4d6d;
+        }
+        
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+        }
+        
+        #noBtn {
+            background: #ff4d6d;
+            color: white;
+        }
+        
+        #noBtn:hover {
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.5);
+        }
+        
+        #loveContent {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            margin-top: 30px;
+            z-index: 20;
+        }
+        
+        #loveContent h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        #loveContent p {
+            font-size: 1.15em;
+            margin-bottom: 20px;
+        }
+        
+        img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+        
+        .heart-drift {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
             }
-            25% {
-                transform: translate(20px, -20px) rotate(-45deg);
-            }
-            50% {
-                transform: translate(-20px, 20px) rotate(-45deg);
-            }
-            75% {
-                transform: translate(20px, 10px) rotate(-45deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(-45deg);
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
     </style>
 </head>
 <body>
-    <button id="move-button">Move Hearts</button>
-    <div id="heart"></div>
 
-    <script>
-        document.getElementById('move-button').onclick = function() {
-            const heart = document.getElementById('heart');
-            heart.style.top = Math.random() * window.innerHeight + 'px';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-        };
-    </script>
+<div class="container">
+    <h1>Damaris, will you be my Valentine? 💖</h1>
+    <p>You have only one correct answer btw 😌</p>
+    
+    <div class="buttons-container">
+        <button id="yesBtn">YES ❤️</button>
+        <button id="noBtn">NO 😈</button>
+    </div>
+    
+    <div id="loveContent">
+        <h2>You really thought you had a choice? 😂</h2>
+        <p>I love you more than words can explain. Happy Valentine's Day 💘</p>
+        <img src="us.jpg.jpeg" alt="Us together">
+    </div>
+</div>
+
+<script>
+// Create drifting hearts
+function createDriftingHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart-drift");
+    heart.innerHTML = "❤️";
+    
+    const startX = Math.random() * window.innerWidth;
+    const startY = window.innerHeight + 50;
+    
+    heart.style.left = startX + "px";
+    heart.style.top = startY + "px";
+    
+    document.body.appendChild(heart);
+    
+    let x = startX;
+    let y = startY;
+    let vx = (Math.random() - 0.5) * 3;
+    let vy = -2;
+    let life = 1;
+    
+    const animate = () => {
+        x += vx;
+        y += vy;
+        life -= 0.01;
+        
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        heart.style.opacity = life;
+        
+        if (life > 0) {
+            requestAnimationFrame(animate);
+        } else {
+            heart.remove();
+        }
+    };
+    
+    animate();
+}
+
+// Create hearts regularly
+setInterval(createDriftingHeart, 300);
+
+// YES button
+document.getElementById("yesBtn").addEventListener("click", function() {
+    document.getElementById("loveContent").style.display = "block";
+    
+    // Burst of hearts
+    for (let i = 0; i < 20; i++) {
+        setTimeout(createDriftingHeart, i * 50);
+    }
+});
+
+// NO button
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+function moveButton() {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    
+    const x = Math.max(10, Math.random() * maxX);
+    const y = Math.max(10, Math.random() * maxY);
+    
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    
+    const msgs = ["No 😜", "Try again 😂", "Wrong 😏", "Seriously 😭", "Not happening 🙅"];
+    noBtn.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+}
+</script>
+
 </body>
 </html>
