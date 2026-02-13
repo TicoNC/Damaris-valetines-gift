@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine's Day!</title>
+    <title>Valentine's Gift</title>
     <style>
         body {
-            background: linear-gradient(to right, #ffafbd, #ffc3a0);
             overflow: hidden;
-            text-align: center;
-            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: pink;
         }
-        .heart {
-            position: absolute;
+        #heart {
             width: 50px;
             height: 50px;
             background-color: red;
-            transform: rotate(45deg);
-            animation: float 5s infinite;
+            position: absolute;
+            transform: rotate(-45deg);
+            animation: drift 5s infinite;
         }
-        .heart::before,
-        .heart::after {
+        #heart:before,
+        #heart:after {
             content: "";
             width: 50px;
             height: 50px;
@@ -28,44 +25,43 @@
             border-radius: 50%;
             position: absolute;
         }
-        .heart::before {
+        #heart:before {
             top: -25px;
             left: 0;
         }
-        .heart::after {
+        #heart:after {
             left: 25px;
+            top: 0;
         }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
-        }
-        #video {
-            margin-top: 20px;
-        }
-        #buttons {
-            margin-top: 20px;
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) rotate(-45deg);
+            }
+            25% {
+                transform: translate(20px, -20px) rotate(-45deg);
+            }
+            50% {
+                transform: translate(-20px, 20px) rotate(-45deg);
+            }
+            75% {
+                transform: translate(20px, 10px) rotate(-45deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(-45deg);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <div id="video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/AjGkbFqi67c" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div id="buttons">
-        <button style="padding: 10px 20px; font-size: 20px;">YES</button>
-        <button style="padding: 10px 20px; font-size: 20px;">NO</button>
-    </div>
+    <button id="move-button">Move Hearts</button>
+    <div id="heart"></div>
+
     <script>
-        // Floating hearts generation
-        for (let i = 0; i < 20; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(heart);
-        }
+        document.getElementById('move-button').onclick = function() {
+            const heart = document.getElementById('heart');
+            heart.style.top = Math.random() * window.innerHeight + 'px';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+        };
     </script>
 </body>
 </html>
