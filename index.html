@@ -151,7 +151,6 @@
 </div>
 
 <script>
-// Create drifting hearts
 function createDriftingHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart-drift");
@@ -167,62 +166,5 @@ function createDriftingHeart() {
     
     let x = startX;
     let y = startY;
-    let vx = (Math.random() - 0.5) * 3;
-    let vy = -2;
-    let life = 1;
-    
-    const animate = () => {
-        x += vx;
-        y += vy;
-        life -= 0.01;
-        
-        heart.style.left = x + "px";
-        heart.style.top = y + "px";
-        heart.style.opacity = life;
-        
-        if (life > 0) {
-            requestAnimationFrame(animate);
-        } else {
-            heart.remove();
-        }
-    };
-    
-    animate();
-}
-
-// Create hearts regularly
-setInterval(createDriftingHeart, 300);
-
-// YES button
-document.getElementById("yesBtn").addEventListener("click", function() {
-    document.getElementById("loveContent").style.display = "block";
-    
-    // Burst of hearts
-    for (let i = 0; i < 20; i++) {
-        setTimeout(createDriftingHeart, i * 50);
-    }
-});
-
-// NO button
-const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
-
-function moveButton() {
-    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
-    
-    const x = Math.max(10, Math.random() * maxX);
-    const y = Math.max(10, Math.random() * maxY);
-    
-    noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-    
-    const msgs = ["No 😜", "Try again 😂", "Wrong 😏", "Seriously 😭", "Not happening 🙅"];
-    noBtn.textContent = msgs[Math.floor(Math.random() * msgs.length)];
-}
-</script>
-
-</body>
-</html>
+    let vx = (*
+
