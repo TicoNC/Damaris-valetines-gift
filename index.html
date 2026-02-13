@@ -3,76 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Gift</title>
+    <title>For Damaris ❤️</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background-color: #ffcccb;
-            overflow: hidden;
-            position: relative;
             font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .heart {
-            position: absolute;
-            background-color: red;
-            width: 50px;
-            height: 50px;
-            transform: rotate(-45deg);
-            animation: drift 5s linear infinite;
+        
+        .container {
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
         }
-        .heart::before, .heart::after {
-            content: "";
-            background-color: red;
-            border-radius: 50%;
-            position: absolute;
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
-        .heart::before {
-            width: 50px;
-            height: 50px;
-            left: 25px;
+        
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
-        .heart::after {
-            width: 50px;
-            height: 50px;
-            top: -25px;
+        
+        .buttons-wrapper {
+            margin: 40px 0;
         }
-        @keyframes drift {
-            0% {
-                transform: translate(0, 0) rotate(-45deg);
-            }
-            100% {
-                transform: translate(100vw, -100vh) rotate(-45deg);
-            }
-        }
+        
         button {
-            margin: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
             cursor: pointer;
-            background-color: #ffffff;
-            border: 1px solid #ff69b4;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin: 10px;
         }
-        button:hover {
-            background-color: #ff69b4;
+        
+        #yesBtn {
+            background: white;
+            color: #ff4d6d;
+        }
+        
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
+        }
+        
+        #noBtn {
+            background: #ff4d6d;
+            color: white;
+            position: fixed;
+        }
+        
+        #noBtn:hover {
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.5);
+        }
+        
+        #loveContent {
+            display: none;
+            animation: fadeIn 0.8s ease-in;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            margin-top: 30px;
+        }
+        
+        #loveContent h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        #loveContent p {
+            font-size: 1.15em;
+            margin-bottom: 20px;
+        }
+        
+        img {
+            width: 85%;
+            max-width: 350px;
+            border-radius: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+        
+        .heart-float {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <p>Click the button to create a heart!</p>
-    <button onclick="createHeart()">Create Heart</button>
-    <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            document.body.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-    </script>
-</body>
-</html>
+
+<div class="container">
+    <h1>Damaris, will you be my Valentine? 💖</h1>
+    <p>You have only one correct answer btw 😌</p>
+    
+    <div class="buttons-wrapper">*
+
